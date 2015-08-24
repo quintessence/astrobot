@@ -11,13 +11,13 @@ func ra2deg(raHr float64) float64 {
 }
 
 // Returns mean sidereal time in degrees. Based on p89 Astronomical Algorithms 2nd Ed by John Meeus
-func meanSiderealTime(long float64, dat time.Time) float64 {
-	year := float64(dat.Year())
-	month := float64(dat.Month())
-	day := float64(dat.Day())
-	hour := float64(dat.Hour())
-	minute := float64(dat.Minute())
-	second := float64(dat.Second())
+func meanSiderealTime(long float64, dateTime time.Time) float64 {
+	year := float64(dateTime.Year())
+	month := float64(dateTime.Month())
+	day := float64(dateTime.Day())
+	hour := float64(dateTime.Hour())
+	minute := float64(dateTime.Minute())
+	second := float64(dateTime.Second())
 
 	if month == 1 || month == 2 {
 		month = month + 12
@@ -52,9 +52,9 @@ func meanSiderealTime(long float64, dat time.Time) float64 {
 	return meansidereal
 }
 
-func CelestialToHorizontal(raHr float64, dec float64, lat float64, long float64, dat time.Time) (float64, float64) {
+func CelestialToHorizontal(raHr float64, dec float64, lat float64, long float64, dateTime time.Time) (float64, float64) {
 	radeg := ra2deg(raHr)
-	hourAngle := meanSiderealTime(long, dat) - radeg
+	hourAngle := meanSiderealTime(long, dateTime) - radeg
 	if hourAngle < 0 {
 		hourAngle = hourAngle + 360
 	}
