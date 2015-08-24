@@ -52,7 +52,7 @@ func meanSiderealTime(long float64, dat time.Time) float64 {
 	return meansidereal
 }
 
-func CelestialToHorizon(raHr float64, dec float64, lat float64, long float64, dat time.Time) (float64, float64) {
+func CelestialToHorizontal(raHr float64, dec float64, lat float64, long float64, dat time.Time) (float64, float64) {
 	radeg := ra2deg(raHr)
 	hourAngle := meanSiderealTime(long, dat) - radeg
 	if hourAngle < 0 {
